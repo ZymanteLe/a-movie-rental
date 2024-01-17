@@ -1,0 +1,25 @@
+<div class="home-page">
+  <app-nav-bar></app-nav-bar>
+  <div class="available-movies-table">
+    <h1>Available Movies</h1>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Price for 12h</th>
+        <th>Is in stock</th>
+      </tr>
+      <tr *ngFor="let movie of movieList">
+        <td>{{movie.name}}</td>
+        <td>{{movie.genre}}</td>
+        <td>{{movie.rentalPrice}}</td>
+        <td *ngIf="movie.stockCount > 0; else elseBlock">
+          <img class="instock-picture" src="assets/img/check.png" alt="check"/>
+        </td>
+        <ng-template #elseBlock><td><img class="instock-picture" src="assets/img/cross.png" alt="cross"/></td></ng-template>
+        <td>Rent</td>
+      </tr>
+    </table>
+  </div>
+  <app-footer></app-footer>
+</div>

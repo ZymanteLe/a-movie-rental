@@ -1,0 +1,26 @@
+<div class="your-movies-page">
+  <app-nav-bar></app-nav-bar>
+  <div class="your-movies-table">
+    <h1>Your Movies</h1>
+    <table id="your-movies-table">
+      <tr>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Time</th>
+        <th>Price</th>
+      </tr>
+      <tr *ngFor="let movie of yourMovieList">
+        <td>{{ movie.name }}</td>
+        <td>{{ movie.genre }}</td>
+        <td>
+          <span class="less-time-button">&lt;</span>
+          <span class="time-option">{{ movie.time }}h</span>
+          <span class="more-time-button">&gt;</span>
+        </td>
+        <td>{{ movie.rentalPrice }}$</td>
+        <td>Remove</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<app-footer></app-footer>

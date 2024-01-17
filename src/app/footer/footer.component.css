@@ -1,0 +1,16 @@
+.page-footer {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-top: auto;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--dark-button);
+  color: var(--bright-text);
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding:0px 30px 30px;
+}
