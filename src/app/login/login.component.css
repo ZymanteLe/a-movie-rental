@@ -13,9 +13,6 @@
   padding: 15px 20px 10px;
   margin-bottom: 20px;
 }
-.register-form {
-  display: none;
-}
 .input-label {
   font-size: 0.6rem;
   margin-bottom: 2px;
@@ -31,7 +28,6 @@
 #email-repeat,
 #register-password {
   background-color: var(--background);
-  border-style: none;
   padding: 5px;
   border-radius: 1px;
 }
@@ -52,5 +48,14 @@
 .register-message {
   font-size: 0.6rem;
   margin-bottom: 5px;
-  color: red;
+  color: var(--red-button);
+}
+
+input.ng-invalid.ng-touched {
+  border: var(--red-button) 2px solid;
+  border-radius: 1px;
+}
+
+input.ng-pristine {
+  border-style: none;
 }

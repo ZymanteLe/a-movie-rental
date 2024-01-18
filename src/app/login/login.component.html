@@ -1,5 +1,9 @@
 <div class="login-page">
-  <form class="signin-form" [formGroup]="siginForm" (ngSubmit)="OnFormSubmited()">
+  <form
+    class="signin-form"
+    [formGroup]="siginForm"
+    (ngSubmit)="OnSignInFormSubmited()"
+  >
     <label class="input-label">Email</label>
     <input
       type="email"
@@ -18,23 +22,62 @@
       required
       formControlName="signInPassword"
     />
-    <p class="signin-message" id="signin-message"></p>
+    <p
+      class="signin-message"
+      *ngIf="
+        siginForm.get('signInEmail' || 'signInPassword')?.touched;
+        else elseBlock
+      "
+    >
+      Email and/or password fields are empty.
+    </p>
+    <ng-template #elseBlock
+      ><p
+        class="signin-message"
+        #elseBlock
+        *ngIf="
+          siginForm?.get('signInEmail')?.invalid &&
+          siginForm.get('signInEmail')?.touched
+        "
+      >
+        Your email format is not correct.
+      </p></ng-template
+    >
+    <p class="signin-message" *ngIf="errorMessage">{{ errorMessage }}</p>
     <button class="signin-button" type="submit" id="signin-button">
       Sign in
     </button>
   </form>
-  <div>
-    <form class="register-form" id="register-form">
+  <div [hidden]="registerFormHidden">
+    <form
+      class="register-form"
+      id="register-form"
+      [formGroup]="registerForm"
+      (ngSubmit)="OnRegisterFormSubmited()"
+    >
       <label class="input-label" for="name">Name</label>
-      <input type="text" name="user-name" placeholder="name" id="userName" />
+      <input
+        type="text"
+        name="user-name"
+        placeholder="name"
+        id="userName"
+        formControlName="userName"
+      />
       <label class="input-label" for="surname">Surname</label>
-      <input type="text" name="surname" id="surname" placeholder="surname" />
+      <input
+        type="text"
+        name="surname"
+        id="surname"
+        placeholder="surname"
+        formControlName="surname"
+      />
       <label class="input-label" for="email">Email</label>
       <input
         type="email"
         name="email"
         placeholder="email"
         id="register-email"
+        formControlName="registerEmail"
       />
       <label class="input-label" for="email-repeat">Email again</label>
       <input
@@ -42,6 +85,7 @@
         name="email-repeat"
         placeholder="email"
         id="email-repeat"
+        formControlName="emailRepeat"
       />
       <label class="input-label" for="register-password">Password</label>
       <input
@@ -49,6 +93,7 @@
         name="register-password"
         id="register-password"
         placeholder="password"
+        formControlName="password"
       />
       <label class="input-label" for="password-repeat">Password again</label>
       <input
@@ -56,21 +101,24 @@
         name="password-repeat"
         id="password-repeat"
         placeholder="password"
+        formControlName="passwordRepeat"
       />
       <p id="register-message" class="register-message"></p>
       <button
         class="register-inform-button"
-        type="button"
+        type="submit"
         id="register-inform-button"
       >
         Register
       </button>
     </form>
+  </div>
+  <div [hidden]="registerButtonHidden">
     <button
+      (click)="toggleForm()"
       class="open-form-button"
       type="button"
       id="open-form-button"
-      [routerLink]="['/home']"
     >
       Register
     </button>
